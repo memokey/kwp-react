@@ -14,8 +14,11 @@ export const Properties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://apisandbox.buildium.com/v1/rentals', {
+        const response = await axios.get('https://apisandbox.buildium.com/v1/rentals', {
           headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "*",
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
           },
