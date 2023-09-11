@@ -28,7 +28,7 @@ export const Properties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiCaller('/rentals', {
+        const response = await apiCaller.get('/rentals', {
           headers: {
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
