@@ -1,7 +1,6 @@
 {
   "name": "kwproperty",
   "version": "0.1.0",
-  "proxy": "https://apisandbox.buildium.com",
   "homepage":".",
   "private": true,
   "dependencies": {
