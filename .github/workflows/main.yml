@@ -1,0 +1,71 @@
+name: Manual deploy
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: 'Deploy to..'
+        default: dev
+        required: true
+        options:
+          - dev
+          - test
+          - uat
+
+env: 
+   CI: false
+   SERVER_DIR: ${{ github.event.inputs.environment }}/KWP.Site/
+   FTP_HOST: ${{ secrets.FTP_HOST }}
+   FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+   FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+   
+jobs:
+  BuildAndDeploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out the code from the repository with the last commit from the develop branch
+      - name: Clone Repository (Develop Branch)
+        uses: actions/checkout@v3
+        with:
+          ref: develop
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      # Setup Node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      # Enable Cache
+      - uses: actions/cache@v3
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      # Install dependencies
+      - name: Install dependencies
+        run: yarn install
+
+      # Build the app
+      - name: Build the app
+        run: npm run build
+
+       # Set up FTP connection
+      - name: Set up FTP connection       
+        run: |
+          sudo apt-get update &&
+          sudo apt-get install -y lftp
+      # Remove file from FTP location
+      - name: Remove file from FTP location
+        run: |
+          lftp -e "set ftp:ssl-allow no; open -u ${{ secrets.FTP_USERNAME }},${{ secrets.FTP_PASSWORD }} ${{ secrets.FTP_HOST }}; rm -rf ${SERVER_DIR}.; bye"
+      # Deploy the built files to the destination folder on the cPanel hosting account
+      - name: Upload files
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: build/
+          server-dir: ${{ env.SERVER_DIR }}
+
+

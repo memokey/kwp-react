@@ -1,0 +1,14 @@
+.background {
+    background-color: #eee;
+    position: relative;
+    margin: 20px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00000030;
+}
+
+.search-button {
+    position: absolute;
+    bottom: 30px;
+    right: 50px;
+    min-width: 130px;
+}

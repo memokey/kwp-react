@@ -1,0 +1,8 @@
+{
+    "apiKeys": {
+      "buildiumClientId": "fedd8bc2-fe42-4865-8891-b0dfd6532dba",
+      "buildiumClientSecret": "03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI="
+    },
+    "apiUrl": "https://apisandbox.buildium.com/v1/rentals"
+  }
+  

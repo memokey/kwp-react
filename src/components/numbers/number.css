@@ -1,0 +1,5 @@
+.outer {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 40px #044dac10;
+}

@@ -1,0 +1,48 @@
+.kw-round-btn {
+    padding: 8px 20px;
+    background-color: #fff;
+    border: 0;
+    border-radius: 30px;
+}
+
+.kw-logo-text {
+    font-size: 13px;
+}
+
+.kw-logo-text-img {
+    max-width: 50;
+    height: auto;
+    vertical-align: middle;
+}
+
+
+
+  .navbar-min {
+    min-height: 100%;
+  }
+
+  .full-screen .nav-link.fs-4 {
+    /* font-size: 1rem; */
+  }
+
+  .drop-links {
+    position: absolute;
+    top: 84px;
+    width: 100vw;
+    left: 0;
+    
+  }
+
+  .highlight-link {
+    border-bottom: 3px solid #044dac;
+  }
+
+
+  @media (max-width: 768px) {
+    .full-screen {
+      max-width: 80vw !important; 
+    }
+  }
+  
+  
+  

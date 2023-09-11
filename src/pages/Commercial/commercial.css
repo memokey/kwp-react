@@ -1,0 +1,7 @@
+.listings-container {
+    background-color: #eee;
+    position: relative;
+    margin: 50px 50px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #00000030;
+}
