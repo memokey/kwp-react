@@ -14,12 +14,12 @@ export const Properties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/v1/rentals', {
+        const response = await fetch('https://apisandbox.buildium.com/v1/rentals', {
           headers: {
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
           },
-        });
+        }); 
         if (response.ok) {
           // const data = await response.json();
           // setPropertyData(data);
