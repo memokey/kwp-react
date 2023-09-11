@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import KWNavbar from '../../components/navbar/navbar'
 import KWFooter from '../../components/footer/footer'
@@ -15,19 +14,16 @@ export const Properties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://apisandbox.buildium.com/v1/rentals', {
+        const response = await fetch('/v1/rentals', {
           headers: {
-            "Content-Type": "application/json",
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "*",
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
           },
-        }); 
+        });
         if (response.ok) {
-          // const data = await response.json();
-          // setPropertyData(data);
-          // console.log(propertyData);
+          const data = await response.json();
+          setPropertyData(data);
+          console.log(propertyData);
         } else {
           throw new Error('Error fetching property data');
         }
