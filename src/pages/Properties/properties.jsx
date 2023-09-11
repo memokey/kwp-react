@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
-import axios from "axios";
 import KWNavbar from '../../components/navbar/navbar'
 import KWFooter from '../../components/footer/footer'
 import { Propertiescard } from '../../components/propertiescard/propertiescard'
@@ -9,35 +8,22 @@ import './properties.css'
 import { FaLocationDot, FaMapMarker, FaMapPin, FaSearchLocation } from 'react-icons/fa'
 import { Map } from '../../components/map/map'
 import KWPropertyCard from '../../components/propertycard/propertycard'
-
-const urlBase = "https://apisandbox.buildium.com"
-
-export const apiCaller = axios.create({
-  baseURL: `${urlBase}/v1`,
-  headers: {
-    "Content-Type": "application/json",
-    "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "*",
-  },
-  withCredentials: true,
-});
-
 export const Properties = () => {
   const [propertyData, setPropertyData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiCaller.get('/rentals', {
+        const response = await fetch('/v1/rentals', {
           headers: {
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
           },
         });
         if (response.ok) {
-          // const data = await response.json();
-          // setPropertyData(data);
-          console.log(response.data);
+          const data = await response.json();
+          setPropertyData(data);
+          console.log(propertyData);
         } else {
           throw new Error('Error fetching property data');
         }
