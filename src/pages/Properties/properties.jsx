@@ -16,16 +16,14 @@ export const Properties = () => {
       try {
         const response = await fetch('/v1/rentals', {
           headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
           },
         });
         if (response.ok) {
-          const data = await response.json();
-          setPropertyData(data);
-          console.log(propertyData);
+          // const data = await response.json();
+          // setPropertyData(data);
+          // console.log(propertyData);
         } else {
           throw new Error('Error fetching property data');
         }
