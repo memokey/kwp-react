@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { Button, Col, Container, Form, Row } from 'react-bootstrap'
 import KWNavbar from '../../components/navbar/navbar'
 import KWFooter from '../../components/footer/footer'
@@ -15,7 +14,7 @@ export const Properties = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/v1/rentals', {
+        const response = await fetch('/v1/rentals', {
           headers: {
             'x-buildium-client-id': 'fedd8bc2-fe42-4865-8891-b0dfd6532dba',
             'x-buildium-client-secret': '03RYUJ+MPGyjuKdOCscRviUauD6ZUWm8R8rcuItL0yI=',
